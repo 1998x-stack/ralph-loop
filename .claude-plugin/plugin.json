@@ -1,0 +1,19 @@
+{
+  "name": "ralph-loop",
+  "version": "1.0.0",
+  "description": "Deterministic-autonomous AI agent loop system. Spawns fresh agents with zero context memory until every task is verifiably complete. Based on Geoffrey Huntley's Ralph Wiggum technique.",
+  "author": "Ralph Loop contributors",
+  "license": "MIT",
+  "homepage": "https://github.com/1998x-stack/ralph-loop",
+  "repository": "https://github.com/1998x-stack/ralph-loop",
+  "keywords": ["autonomous", "agent-loop", "claude-code", "ai-agent", "prd-driven", "context-management"],
+  "components": {
+    "skills": ["skills/ralph-loop", "skills/generate-prd", "skills/initialize-project"],
+    "agents": ["agents/ralph-coding-agent.md", "agents/ralph-initializer.md", "agents/ralph-debugger.md"],
+    "hooks": "hooks/hooks.json",
+    "mcpServers": ".mcp.json"
+  },
+  "settings": {
+    "agent": "claude-sonnet-4-20250514"
+  }
+}
