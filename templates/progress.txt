@@ -1,0 +1,29 @@
+# Project: [PROJECT_NAME]
+# Created: [DATE]
+# Status: IN PROGRESS
+# Ralph version: 1.0.0
+
+## Project Info
+
+Tech Stack:  [TECH_STACK]
+Server:      http://localhost:[PORT]
+Total PRD:   [N] user stories
+
+## Ralph Run Log
+
+### Session 1 (Initializer) — [DATE TIME]
+Role: Initializer Agent
+Action: Project scaffold setup
+Details:
+  - Created prd.json with [N] user stories
+  - Created init.sh — tested: OK (server starts, health check passes)
+  - Created AGENTS.md with project conventions
+  - Initialized git repository
+  - Tech stack: [TECH_STACK]
+Features completed: 0 / [N]
+Next session should:
+  - Start with: setup-001 (highest priority)
+  - Run bash init.sh first, verify READY before working
+  - Then proceed to auth-001
+
+---

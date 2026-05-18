@@ -1,0 +1,204 @@
+{
+  "project": "[PROJECT_NAME]",
+  "version": "1.0.0",
+  "created": "YYYY-MM-DD",
+  "description": "[项目简短描述]",
+  "tech_stack": ["Next.js 14", "Prisma", "PostgreSQL", "Tailwind CSS"],
+  "baseUrl": "http://localhost:3000",
+  "_comment": "Ralph Loop PRD Template. Replace all [PLACEHOLDER] values. Each story must be completable within one context window.",
+  "userStories": [
+    {
+      "id": "setup-001",
+      "category": "Setup",
+      "title": "项目基础结构",
+      "description": "基础项目结构可以正常构建和运行",
+      "acceptanceCriteria": [
+        "运行 npm run dev 无报错",
+        "访问 http://localhost:3000 返回 200",
+        "运行 npm run build 成功"
+      ],
+      "passes": false,
+      "priority": 1,
+      "estimatedMinutes": 30,
+      "dependencies": []
+    },
+    {
+      "id": "auth-001",
+      "category": "Authentication",
+      "title": "用户注册",
+      "description": "用户可以通过邮箱和密码注册新账户",
+      "acceptanceCriteria": [
+        "导航到 /register 页面显示注册表单",
+        "输入有效邮箱和密码（8位以上含数字）",
+        "点击注册按钮",
+        "注册成功后跳转到 /dashboard",
+        "Verify in browser using dev-browser skill"
+      ],
+      "passes": false,
+      "priority": 1,
+      "estimatedMinutes": 60,
+      "dependencies": ["setup-001"]
+    },
+    {
+      "id": "auth-002",
+      "category": "Authentication",
+      "title": "用户登录",
+      "description": "注册用户可以使用邮箱和密码登录",
+      "acceptanceCriteria": [
+        "导航到 /login 页面显示登录表单",
+        "输入正确的邮箱和密码",
+        "登录成功后跳转到 /dashboard",
+        "显示错误信息当凭据错误时",
+        "Verify in browser using dev-browser skill"
+      ],
+      "passes": false,
+      "priority": 1,
+      "estimatedMinutes": 45,
+      "dependencies": ["auth-001"]
+    },
+    {
+      "id": "auth-003",
+      "category": "Authentication",
+      "title": "用户登出",
+      "description": "已登录用户可以安全登出",
+      "acceptanceCriteria": [
+        "在 /dashboard 找到登出按钮",
+        "点击登出后跳转到 /login",
+        "登出后无法访问 /dashboard（重定向到 /login）",
+        "Verify in browser using dev-browser skill"
+      ],
+      "passes": false,
+      "priority": 2,
+      "estimatedMinutes": 30,
+      "dependencies": ["auth-002"]
+    },
+    {
+      "id": "profile-001",
+      "category": "User Profile",
+      "title": "查看个人资料",
+      "description": "用户可以查看自己的个人资料页面",
+      "acceptanceCriteria": [
+        "导航到 /profile 显示用户信息",
+        "显示邮箱地址",
+        "显示注册时间",
+        "Verify in browser using dev-browser skill"
+      ],
+      "passes": false,
+      "priority": 2,
+      "estimatedMinutes": 30,
+      "dependencies": ["auth-002"]
+    },
+    {
+      "id": "profile-002",
+      "category": "User Profile",
+      "title": "编辑用户名",
+      "description": "用户可以修改自己的显示名称",
+      "acceptanceCriteria": [
+        "在 /profile 找到编辑名称的输入框",
+        "输入新名称并点击保存",
+        "刷新页面后新名称持久保存",
+        "显示名称在 header/navbar 中更新",
+        "Verify in browser using dev-browser skill"
+      ],
+      "passes": false,
+      "priority": 3,
+      "estimatedMinutes": 45,
+      "dependencies": ["profile-001"]
+    },
+    {
+      "id": "api-001",
+      "category": "API",
+      "title": "健康检查接口",
+      "description": "GET /api/health 返回服务状态",
+      "acceptanceCriteria": [
+        "curl http://localhost:3000/api/health 返回 200",
+        "响应体包含 {\"status\": \"ok\", \"timestamp\": ...}",
+        "响应时间 < 100ms"
+      ],
+      "passes": false,
+      "priority": 1,
+      "estimatedMinutes": 15,
+      "dependencies": ["setup-001"]
+    },
+    {
+      "id": "ui-001",
+      "category": "UI/UX",
+      "title": "响应式导航栏",
+      "description": "应用有在桌面和移动设备上均可用的导航栏",
+      "acceptanceCriteria": [
+        "导航栏在 1280px 宽度下显示完整菜单",
+        "导航栏在 375px 宽度下显示汉堡菜单",
+        "汉堡菜单点击后展开导航项",
+        "Verify in browser using dev-browser skill"
+      ],
+      "passes": false,
+      "priority": 2,
+      "estimatedMinutes": 45,
+      "dependencies": ["setup-001"]
+    },
+    {
+      "id": "ui-002",
+      "category": "UI/UX",
+      "title": "加载状态指示",
+      "description": "所有异步操作显示加载状态，防止重复提交",
+      "acceptanceCriteria": [
+        "提交表单时按钮显示 loading 状态",
+        "loading 期间按钮不可点击",
+        "页面切换时显示加载指示器",
+        "Verify in browser using dev-browser skill"
+      ],
+      "passes": false,
+      "priority": 3,
+      "estimatedMinutes": 30,
+      "dependencies": ["auth-001"]
+    },
+    {
+      "id": "data-001",
+      "category": "Data Management",
+      "title": "数据分页",
+      "description": "列表页面支持分页，每页默认显示 20 条",
+      "acceptanceCriteria": [
+        "列表超过 20 条时显示分页控件",
+        "点击下一页正确加载下一页数据",
+        "URL 包含页码参数（?page=2）",
+        "直接访问 /list?page=3 正确加载第3页",
+        "Verify in browser using dev-browser skill"
+      ],
+      "passes": false,
+      "priority": 3,
+      "estimatedMinutes": 60,
+      "dependencies": ["setup-001"]
+    },
+    {
+      "id": "perf-001",
+      "category": "Performance",
+      "title": "首屏加载优化",
+      "description": "首页在 3G 网络下 3 秒内完成 LCP",
+      "acceptanceCriteria": [
+        "Lighthouse Performance 分数 > 70",
+        "LCP < 3000ms（Lighthouse 测试）",
+        "No layout shift (CLS < 0.1)"
+      ],
+      "passes": false,
+      "priority": 4,
+      "estimatedMinutes": 90,
+      "dependencies": ["ui-001"]
+    },
+    {
+      "id": "admin-001",
+      "category": "Admin",
+      "title": "管理员用户列表",
+      "description": "管理员可以查看所有注册用户的列表",
+      "acceptanceCriteria": [
+        "管理员访问 /admin/users 显示用户表格",
+        "显示列：ID、邮箱、注册时间、状态",
+        "非管理员访问返回 403 或重定向",
+        "Verify in browser using dev-browser skill"
+      ],
+      "passes": false,
+      "priority": 4,
+      "estimatedMinutes": 60,
+      "dependencies": ["auth-002"]
+    }
+  ]
+}
