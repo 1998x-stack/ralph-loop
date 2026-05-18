@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ralph Loop — Deterministic Autonomous AI Agent System</title>
+<meta name="description" content="Ralph Loop runs AI coding agents in continuous iterations until all PRD items are verifiably complete. Fresh context per iteration. No context rot.">
+<link rel="stylesheet" href="base-dark.css">
+<style>
+:root {
+  --c1: #F59E0B;  --c1d: #B45309;
+  --c2: #06B6D4;  --c2d: #0E7490;
+  --c3: #10B981;  --c3d: #047857;
+  --c4: #8B5CF6;  --c4d: #6D28D9;
+}
+.hero h1 em {
+  background: linear-gradient(90deg, var(--c1), var(--c2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+/* Hero stats row */
+.hero-stats {
+  display: flex; gap: 32px; margin-bottom: 28px; flex-wrap: wrap;
+}
+.hstat-num {
+  font-size: 28px; font-weight: 700; color: var(--text);
+  letter-spacing: -.02em;
+}
+.hstat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+/* CTA buttons */
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 22px; border-radius: 8px; font-size: 14px;
+  font-weight: 600; border: 1px solid; cursor: pointer;
+  transition: all .15s; text-decoration: none; white-space: nowrap;
+}
+.cta-primary {
+  background: var(--text); color: var(--bg);
+  border-color: var(--text);
+}
+.cta-primary:hover { opacity: .88; transform: translateY(-1px); }
+.cta-ghost {
+  background: transparent; color: var(--text);
+  border-color: var(--border2);
+}
+.cta-ghost:hover { background: var(--bg3); border-color: var(--text); }
+/* Section intro */
+.sec-intro {
+  font-size: 15px; color: var(--muted); line-height: 1.8;
+  max-width: 780px; margin-bottom: 40px;
+}
+/* Feature list stripes */
+.feat-row {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 14px 0; border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.feat-icon {
+  width: 28px; height: 28px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+.feat-label { font-weight: 600; margin-bottom: 2px; }
+.feat-sub  { font-size: 13px; color: var(--muted); line-height: 1.6; }
+/* Architecture diagram */
+.arch-diagram {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 12px; padding: 32px; overflow-x: auto;
+  font-family: var(--mono); font-size: 12px; line-height: 1.9;
+  color: var(--code-text); margin-bottom: 24px;
+}
+.arch-diagram .dir { color: #8B5CF6; }
+.arch-diagram .fil { color: var(--muted); }
+.arch-diagram .lab { color: #79c0ff; }
+/* Inline code */
+.inline-code {
+  font-family: var(--mono); font-size: 12px;
+  background: var(--bg3); padding: 2px 7px; border-radius: 4px;
+  color: var(--c1);
+}
+/* CTA section */
+.cta-sec {
+  padding: 80px 0; text-align: center; border-bottom: 1px solid var(--border);
+}
+.cta-sec h2 { font-size: 36px; font-weight: 700; margin-bottom: 16px; }
+.cta-sec p  { font-size: 16px; color: var(--muted); max-width: 560px; margin: 0 auto 32px; line-height: 1.8; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand" style="color:var(--c1)">⟳</span>
+    <span class="nav-brand">Ralph Loop<span>— autonomous agent system</span></span>
+    <a class="nl" href="#what">What</a>
+    <a class="nl" href="#how">How</a>
+    <a class="nl" href="#features">Features</a>
+    <a class="nl" href="#start">Quick Start</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-badge"><span class="dot"></span> v1.0 — Open Source · MIT</div>
+    <h1>Build Software <em>Autonomously</em> Without Context Rot</h1>
+    <p>Ralph Loop runs AI coding agents in continuous iterations until every task is verifiably complete. Each cycle is a fresh agent instance — zero accumulated context, zero degradation. The only memory is the file system.</p>
+    <div class="hero-stats">
+      <div><div class="hstat-num" style="color:var(--c1)">∞</div><div class="hstat-label">max stories</div></div>
+      <div><div class="hstat-num" style="color:var(--c2)">100%</div><div class="hstat-label">fresh context per iteration</div></div>
+      <div><div class="hstat-num" style="color:var(--c3)">0</div><div class="hstat-label">context rot</div></div>
+    </div>
+    <div class="tag-row">
+      <span class="ltag" style="color:var(--c1);border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.08)">BASH</span>
+      <span class="ltag" style="color:var(--c2);border-color:rgba(6,182,212,.35);background:rgba(6,182,212,.08)">NODE.JS</span>
+      <span class="ltag" style="color:var(--c3);border-color:rgba(16,185,129,.35);background:rgba(16,185,129,.08)">CLAUDE CODE PLUGIN</span>
+      <span class="ltag" style="color:var(--c4);border-color:rgba(139,92,246,.35);background:rgba(139,92,246,.08)">OPENS CODE</span>
+    </div>
+  </section>
+
+  <!-- ═══ WHAT ═══ -->
+  <section class="layer-sec" id="what">
+    <div class="layer-hdr">
+      <span class="layer-id-badge" style="background:var(--c1d);color:#fef3c7">CORE</span>
+      <h2 class="layer-title">What Is Ralph Loop?</h2>
+    </div>
+    <p class="layer-def" style="border-color:var(--c1)">
+      A <strong>Bash while-loop</strong> that spawns fresh AI coding agents, each with zero context memory, until every user story in <span class="inline-code">prd.json</span> is verifiably complete. The loop is deterministic; the agent output is not — and that's the point.
+    </p>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title" style="color:var(--c1)">The Problem</div>
+        <p style="font-size:14px;color:var(--text);line-height:1.75">
+          LLM context windows fill up with no <em style="font-family:var(--mono);font-style:normal">free()</em>. After ~70% utilization, agents enter the <strong>Dumb Zone</strong> — hallucinating, forgetting constraints, making worse decisions. Single-session agents degrade.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--c2)">The Solution</div>
+        <p style="font-size:14px;color:var(--text);line-height:1.75">
+          Never let an agent enter the Dumb Zone. Every iteration spawns a <strong>fresh instance with clean context</strong>. The agent reads files to orient, implements one story, writes state back, and exits. The next iteration starts clean.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ HOW IT WORKS ═══ -->
+  <section class="tran-sec" id="how">
+    <div class="tran-inner">
+      <span class="tran-pill" style="background:var(--c2d);color:#cffafe">MECHANICS</span>
+      <div class="tran-h">How the Loop Works</div>
+    </div>
+  </section>
+  <section class="flow" style="padding-top:16px">
+    <div class="flow-track">
+      <div class="flow-box" style="border-color:rgba(245,158,11,.3)">
+        <div class="fb-tag" style="color:var(--c1)">STEP 1</div>
+        <div class="fb-name">Read State</div>
+        <div class="fb-sub">Agent reads prd.json, progress.txt, AGENTS.md, and git log to orient itself.</div>
+        <div class="fb-file">cat prd.json<br>cat progress.txt</div>
+      </div>
+      <div class="flow-arrow">
+        <span class="arr-icon">→</span>
+        <span class="arr-text">Picks highest-priority pending story</span>
+      </div>
+      <div class="flow-box" style="border-color:rgba(6,182,212,.3)">
+        <div class="fb-tag" style="color:var(--c2)">STEP 2</div>
+        <div class="fb-name">Implement</div>
+        <div class="fb-sub">Implements exactly <strong>one</strong> user story. Frontend stories must pass browser-verified acceptance tests.</div>
+        <div class="fb-file">npm run dev<br>dev-browser verify</div>
+      </div>
+      <div class="flow-arrow">
+        <span class="arr-icon">→</span>
+        <span class="arr-text">Verification passes</span>
+      </div>
+      <div class="flow-box" style="border-color:rgba(16,185,129,.3)">
+        <div class="fb-tag" style="color:var(--c3)">STEP 3</div>
+        <div class="fb-name">Commit State</div>
+        <div class="fb-sub">Updates prd.json (<em>passes: true</em>), appends progress.txt, and git commits with the story ID.</div>
+        <div class="fb-file">git commit -m "feat(...)"<br>prd.json → passes:true</div>
+      </div>
+      <div class="flow-arrow">
+        <span class="arr-icon">→</span>
+        <span class="arr-text">Output signal</span>
+      </div>
+      <div class="flow-box" style="border-color:rgba(139,92,246,.3)">
+        <div class="fb-tag" style="color:var(--c4)">STEP 4</div>
+        <div class="fb-name">Signal &amp; Repeat</div>
+        <div class="fb-sub">Outputs <strong>&lt;promise&gt;COMPLETE&lt;/promise&gt;</strong>. The outer loop detects this, verifies prd.json, and spawns the next iteration.</div>
+        <div class="fb-file">grep "<promise>COMPLETE"<br>→ next iteration or exit</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURES ═══ -->
+  <section class="layer-sec" id="features">
+    <div class="layer-hdr">
+      <span class="layer-id-badge" style="background:var(--c2d);color:#cffafe">CAPABILITIES</span>
+      <h2 class="layer-title">Key Features</h2>
+    </div>
+    <p class="sec-intro">Everything an autonomous agent loop needs — and nothing it doesn't.</p>
+    <div class="grid3">
+      <div class="card">
+        <div class="card-title" style="color:var(--c1)">Fresh Context Per Iteration</div>
+        <p style="font-size:13px;color:var(--text);line-height:1.75">
+          Every coding agent starts with zero memory. No context rot, no "Dumb Zone" degradation. The subagent boundary is the context boundary.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--c2)">File-Based State Machine</div>
+        <p style="font-size:13px;color:var(--text);line-height:1.75">
+          prd.json is the single source of truth. progress.txt is the cross-session handoff diary. git is the code snapshot. No database, no server.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--c3)">Browser-Verified Acceptance</div>
+        <p style="font-size:13px;color:var(--text);line-height:1.75">
+          Frontend stories MUST pass browser automation tests (Puppeteer/Playwright). No "looks good to me" — verification is external and reproducible.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--c4)">Smart Error Recovery</div>
+        <p style="font-size:13px;color:var(--text);line-height:1.75">
+          Two failed attempts → auto-revert, mark BLOCKED, spawn debug subagent. Never force a broken story.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--c1)">Plugin Architecture</div>
+        <p style="font-size:13px;color:var(--text);line-height:1.75">
+          Install once as a Claude Code plugin. Reuse across projects. Skills, agents, hooks — all auto-discovered.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--c2)">Dual Runtime</div>
+        <p style="font-size:13px;color:var(--text);line-height:1.75">
+          Bash for simplicity (<span class="inline-code">ralph.sh</span>) or Node.js for programmatic control (<span class="inline-code">ralph-node.js</span>). Hooks-based autonomous mode or CLI.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PLUGIN STRUCTURE ═══ -->
+  <section class="layer-sec" id="architecture">
+    <div class="layer-hdr">
+      <span class="layer-id-badge" style="background:var(--c4d);color:#ede9fe">ARCH</span>
+      <h2 class="layer-title">Plugin Structure</h2>
+    </div>
+    <p class="layer-def" style="border-color:var(--c4)">
+      Ralph Loop follows the standard <strong>Claude Code plugin layout</strong>. Components auto-discover. Install once, run anywhere.
+    </p>
+    <div class="arch-diagram" aria-label="Plugin directory structure">
+<span class="dir">ralph-loop/</span>
+├── <span class="dir">.claude-plugin/</span>
+│   └── <span class="fil">plugin.json</span>           <span class="lab">← manifest</span>
+├── <span class="dir">skills/</span>
+│   ├── <span class="dir">ralph-loop/</span>           <span class="lab">← /ralph-loop:run</span>
+│   ├── <span class="dir">generate-prd/</span>         <span class="lab">← /ralph-loop:generate-prd</span>
+│   └── <span class="dir">initialize-project/</span>   <span class="lab">← /ralph-loop:init</span>
+├── <span class="dir">agents/</span>                    <span class="lab">← subagent definitions</span>
+├── <span class="dir">hooks/</span>                     <span class="lab">← lifecycle event handlers</span>
+├── <span class="dir">bin/</span>                       <span class="lab">← ralph, ralph-node CLI</span>
+├── <span class="dir">templates/</span>                 <span class="lab">← CLAUDE.md, AGENTS.md, prd.json</span>
+├── <span class="fil">.mcp.json</span>                  <span class="lab">← bundled Puppeteer MCP</span>
+└── <span class="dir">docs/</span>                       <span class="lab">← ADRs, blog posts</span>
+    </div>
+  </section>
+
+  <!-- ═══ QUICK START ═══ -->
+  <section class="layer-sec" id="start">
+    <div class="layer-hdr">
+      <span class="layer-id-badge" style="background:var(--c3d);color:#d1fae5">START</span>
+      <h2 class="layer-title">Quick Start</h2>
+    </div>
+    <p class="sec-intro">Three steps from zero to autonomous development.</p>
+
+    <ol class="steps">
+      <li>
+        <span class="step-num" style="background:var(--c3d);color:#d1fae5">1</span>
+        <strong>Generate your PRD</strong>
+        <div class="step-sub">Describe your project. Ralph asks 5–10 questions, then generates <span class="inline-code">prd.json</span> with 50–200 fine-grained user stories — each small enough for one context window.</div>
+      </li>
+      <li>
+        <span class="step-num" style="background:var(--c2d);color:#cffafe">2</span>
+        <strong>Initialize the project</strong>
+        <div class="step-sub">The initializer agent scaffolds your project: <span class="inline-code">init.sh</span>, <span class="inline-code">AGENTS.md</span>, <span class="inline-code">progress.txt</span>, and the initial git commit. No features implemented — just the foundation.</div>
+      </li>
+      <li>
+        <span class="step-num" style="background:var(--c1d);color:#fef3c7">3</span>
+        <strong>Run the loop</strong>
+        <div class="step-sub">The coordinator picks the highest-priority story, spawns a coding agent, verifies, commits, and repeats — until every story passes.</div>
+      </li>
+    </ol>
+
+    <div style="margin-top:36px">
+      <div class="codeblock">
+        <div class="cb-head">
+          <span class="cb-dot" style="background:#f85149"></span>
+          <span class="cb-dot" style="background:#F59E0B"></span>
+          <span class="cb-dot" style="background:#28c840"></span>
+          Install and run
+        </div>
+        <div class="cb-body"><span class="cm"># Install Ralph Loop as a Claude Code plugin</span>
+<span class="kw">claude</span> plugin install ./ralph-loop --scope local
+
+<span class="cm"># Initialize a project for Ralph</span>
+<span class="kw">claude</span> -p <span class="str">"/ralph-loop:init"</span>
+
+<span class="cm"># Run the autonomous loop</span>
+<span class="kw">claude</span> -p <span class="str">"/ralph-loop:run"</span>
+
+<span class="cm"># Or use the standalone CLI</span>
+<span class="fn">bin/ralph</span> run --max-iterations 100 --verbose</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="cta-sec" style="text-align:left">
+    <h2>Ready to build autonomously?</h2>
+    <p>Fresh context. Zero rot. One story per iteration. Try Ralph Loop on your next project.</p>
+    <div class="cta-row">
+      <a href="https://github.com/1998x-stack/ralph-loop" class="cta-btn cta-primary">View on GitHub →</a>
+      <a href="#start" class="cta-btn cta-ghost">Quick Start</a>
+      <a href="docs/adr/" class="cta-btn cta-ghost">Architecture Decisions</a>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="footer">
+    Ralph Loop · MIT License · Based on Geoffrey Huntley's technique ·
+    <a href="https://ghuntley.com/ralph/" style="color:var(--c2)">ghuntley.com/ralph</a>
+  </div>
+
+</div>
+</body>
+</html>
