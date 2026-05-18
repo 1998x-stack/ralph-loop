@@ -67,18 +67,18 @@ Ralph 的核心原则：
 ### Step 1：生成 PRD（项目需求文档）
 
 ```bash
-# 触发 PRD 生成模式
-# 参考：scripts/prd-generator-prompt.md
-# 输出：prd.json（50-200 个细粒度 User Story）
+# In Claude Code, describe your project
+/ralph-loop:generate-prd
 ```
+See: `skills/generate-prd/SKILL.md` | Legacy: `legacy/prd-generator-prompt.md`
 
 ### Step 2：项目初始化（仅一次）
 
 ```bash
-# 用 initializer agent 建立脚手架
-# 参考：references/initializer-agent.md
-# 输出：init.sh, prd.json, progress.txt, AGENTS.md, 初始 git commit
+# In Claude Code, scaffold your target project
+/ralph-loop:init
 ```
+See: `skills/initialize-project/SKILL.md` | Agents: `agents/ralph-initializer.md` | Legacy: `legacy/initializer-agent.md`
 
 ### Step 3：启动 Ralph 循环
 
@@ -120,22 +120,23 @@ your-project/
 ├── progress.txt                 ← 交班日记
 ├── init.sh                      ← 环境启动脚本
 │
-└── scripts/ralph/
-    ├── ralph.sh                 ← 外循环主控脚本
-    ├── ralph-advanced.sh        ← 高级版（成本控制/通知）
-    ├── ralph-node.js            ← TypeScript/Node 实现
-    └── prd-generator-prompt.md  ← PRD 生成提示词
+Plugin files (installed once):
+  skills/       ← /ralph-loop:run, :generate-prd, :init
+  agents/       ← ralph-coding-agent.md, ralph-initializer.md, ralph-debugger.md
+  bin/          ← ralph (Bash CLI), ralph-node (Node.js CLI)
+  templates/    ← CLAUDE.md, AGENTS.md, prd.json, init-*.sh
+  .mcp.json     ← Puppeteer MCP for browser verification
 ```
 
 ---
 
 ## 参考文件
 
-- `references/how-the-loop-works.md` — 循环原理深度解析
-- `references/initializer-agent.md` — 初始化 Agent 完整指南
-- `references/coding-agent.md` — 编码 Agent 提示词 & 协议
-- `references/context-strategies.md` — 上下文窗口管理策略
-- `references/testing-patterns.md` — E2E 测试模式
+- `how-the-loop-works.md` — 循环原理深度解析
+- `context-strategies.md` — 上下文窗口管理策略
+- `testing-patterns.md` — E2E 测试模式
+- `docs/adr/` — 架构决策记录
+- `legacy/` — 原始文档（已归档）
 
 ## 模板文件
 

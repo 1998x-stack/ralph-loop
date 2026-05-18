@@ -34,9 +34,12 @@ Read these in order when starting work on Ralph Loop itself:
 | `CONTEXT.md` | Domain language and term definitions | Humans (from grill-with-docs) |
 | `progress.txt` | Handoff diary between iterations | Each coding agent appends |
 | `docs/adr/NNNN-*.md` | Architecture Decision Records | Humans (significant decisions) |
-| `prd-generator-prompt.md` | PRD generation prompt | Humans (reference) |
-| `initializer-agent.md` | Init agent guide + templates | Humans (reference) |
-| `coding-agent.md` | Coding agent protocol reference | Humans (reference) |
+| `legacy/coding-agent.md` | Original coding agent protocol (deprecated) | Humans (archived) |
+| `legacy/initializer-agent.md` | Original init agent guide (deprecated) | Humans (archived) |
+| `legacy/prd-generator-prompt.md` | Original PRD generation prompt (deprecated) | Humans (archived) |
+| `agents/ralph-coding-agent.md` | Current coding agent subagent | Humans (plugin) |
+| `agents/ralph-initializer.md` | Current initializer subagent | Humans (plugin) |
+| `skills/generate-prd/SKILL.md` | Current PRD generation skill | Humans (plugin) |
 | `context-strategies.md` | Context window management strategies | Humans (reference) |
 | `testing-patterns.md` | E2E verification patterns | Humans (reference) |
 | `how-the-loop-works.md` | Loop mechanics deep-dive | Humans (reference) |
