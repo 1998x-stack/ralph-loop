@@ -1,4 +1,9 @@
-# Initializer Agent — 一次性项目初始化指南
+> **⚠️ Legacy reference.** This file describes the original flat-repo initializer protocol.
+> The current authoritative version is [`agents/ralph-initializer.md`](agents/ralph-initializer.md),
+> which reflects the Claude Code plugin model (template substitution from prd.json, CLAUDE.custom.md support).
+> This file is preserved for historical reference.
+
+# Initializer Agent — 一次性项目初始化指南 (Legacy)
 
 ## 职责边界
 

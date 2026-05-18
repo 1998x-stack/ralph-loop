@@ -1,4 +1,9 @@
-# Coding Agent — 编码 Agent 完整协议
+> **⚠️ Legacy reference.** This file describes the original flat-repo coding agent protocol.
+> The current authoritative version is [`agents/ralph-coding-agent.md`](agents/ralph-coding-agent.md),
+> which reflects the Claude Code plugin model (subagent isolation, structured output, hooks-based coordination).
+> This file is preserved for historical reference.
+
+# Coding Agent — 编码 Agent 完整协议 (Legacy)
 
 ## 角色定义
 
