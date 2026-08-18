@@ -2,6 +2,8 @@
 
 > **Deterministic-autonomous AI agent system.** A loop spawns fresh agents with zero context memory until every task is verifiably complete. The only "memory" is the file system.
 
+> 中文一句话：确定性自治 Agent 系统——每轮生成一个零上下文的全新 agent，直到每个任务被可验证地完成；唯一的内存是文件系统。核心是让任何 agent 都从不过载上下文，避免进入「Dumb Zone」。
+
 [![MIT License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Status](https://img.shields.io/badge/status-active-brightgreen)]()
 [![Bash](https://img.shields.io/badge/runtime-bash-orange)]()
@@ -31,6 +33,8 @@ claude -p "/ralph-loop:run"
 ---
 
 ## The Problem
+
+> 中文要点：上下文窗口没有 `free()`——累积到 ~70% 利用率后 agent 进入「Dumb Zone」：幻视、遗忘早期约束、决策质量下降。单会话 agent 会退化，多会话 agent 丢状态，多数「自治」方案脆弱。
 
 LLM context windows have no `free()`. Every tool call and file read accumulates — and after ~70% utilization, agents enter the **Dumb Zone**: hallucinating, forgetting early constraints, making increasingly poor decisions.
 
@@ -194,6 +198,20 @@ stateDiagram-v2
     passed --> [*]
     blocked --> pending: human intervenes / debug agent resolves
 ```
+
+## The Harness Lineage（本系定位）
+
+`ralph-loop` 把「文件系统即记忆」的增量约定推向**完全自治**：不再每会话人工驱动一次，而是闭环跑到全部任务通过：
+
+| 成员 | 定位 | 与 ralph-loop 的关系 |
+|------|------|----------------------|
+| `agent-loop` | Init/Execute 跨会话编排 | ralph 在其基础上把「每会话一个 feature」升级为「全自动直至完成」 |
+| `effective-harness` | 零配置 bash 双 Agent | 同源增量约定（one feature/session） |
+| **ralph-loop** | 确定性自治闭环 | --- 本仓库：零上下文 + `/ralph-loop:run` |
+| `loop-runner` | Generator–Evaluator 循环引擎 | 同为「生成→验证」循环；ralph 是 Claude Code 插件形态 |
+| `tiny/mid-harness` | 执行引擎 | ralph 在其上层做自治编排与验收 |
+
+> 关键差异：ralph-loop 强调**确定性**与**外部可复现验收**（浏览器自动化），且以 Claude Code 插件形式交付，一次安装、跨项目复用。
 
 ## Documentation
 
