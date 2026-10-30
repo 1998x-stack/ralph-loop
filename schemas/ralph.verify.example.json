@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "protectedPaths": [
+    "vitest.config.ts",
+    "playwright.config.ts"
+  ],
+  "checks": [
+    {
+      "id": "unit",
+      "command": "npm",
+      "args": [
+        "test",
+        "--",
+        "--run"
+      ],
+      "timeoutSeconds": 180
+    },
+    {
+      "id": "typecheck",
+      "command": "npm",
+      "args": [
+        "run",
+        "typecheck"
+      ],
+      "timeoutSeconds": 180
+    }
+  ]
+}
