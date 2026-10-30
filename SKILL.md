@@ -30,6 +30,8 @@ references:
 
 # Ralph Loop Skill
 
+> **V1.2 compatibility warning:** The executable CLI now defaults to evidence-gated mode (`--verify ralph.verify.json`). The legacy instructions below that modify `prd.json` and trust `<promise>COMPLETE</promise>` apply only to explicit `--legacy-unverified` runs. See `docs/v1.2-migration.md`. The CLI—not the Claude Plugin hooks—is the authoritative coordinator.
+
 ## 核心哲学
 
 > **"The technique is deterministically bad in an undeterministic world."**  

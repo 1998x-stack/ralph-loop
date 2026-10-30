@@ -1,5 +1,25 @@
 # ⟳ Ralph Loop
 
+## V1.2 Verified Execution (development branch)
+
+**This is the current code path:** `ralph-node.js --verify ralph.verify.json`. A trusted manifest defines executable checks for each Story. The coding agent may edit implementation files but cannot self-certify completion; an independent test subprocess and deterministic evaluator decide acceptance. Evidence is stored under `.ralph/`.
+
+```bash
+# From the target project's root; copy and review the sample manifest first.
+cp /path/to/ralph-loop/schemas/ralph.verify.example.json ./ralph.verify.json
+cp /path/to/ralph-loop/templates/CLAUDE.md ./CLAUDE.md
+node /path/to/ralph-loop/ralph-node.js --verify ralph.verify.json --dry-run
+node /path/to/ralph-loop/ralph-node.js --verify ralph.verify.json --max-iterations 20
+node /path/to/ralph-loop/ralph-node.js status
+```
+
+**Review the sample check commands for your actual project before running.** By default the CLI refuses to run without `--verify`. `--legacy-unverified` is a deliberate compatibility escape hatch, not a recommended default. The old descriptions below reflect historical V1 behavior and do not describe the V1.2 acceptance authority. **Not a production sandbox:** Agent and evaluator still run under the same OS identity; do not run against untrusted repositories until Worktree/container isolation and external evidence storage are implemented.
+
+[Implementation and limitations](docs/v1.2-migration.md) · [ADR 0005](docs/adr/0005-independent-evaluator.md)
+
+---
+
+
 > **V1.1 reliability-core status (development branch):** The executable Bash and Node drivers now share the same Node.js core. PRD validation, dependency readiness, bounded iterations, timeout handling, and no-progress stopping are implemented and tested. The Claude Plugin's `Stop` hook is **informational only**; it is not a second autonomous scheduler. Independent acceptance, durable attempts, rollback, cost tracking, and sandboxed isolation are **not yet implemented**.
 >
 > **Safety:** The runner no longer opts out of Claude CLI permission checks by default. Run automation only in a properly configured, restricted workspace. A successful `passes:true` flag is currently a legacy completion claim, **not** independent verification.
