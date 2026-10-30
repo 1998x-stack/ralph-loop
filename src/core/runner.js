@@ -24,6 +24,7 @@ function parseArgs(args) {
     const fields = { '--max-iterations':'maxIterations','--max-no-progress':'maxNoProgress', '--tool':'tool', '--prompt':'promptFile', '--prd':'prdFile', '--timeout-seconds':'timeoutSeconds', '--delay-seconds':'iterationDelaySec', '--log':'logFile', '--verify':'verificationFile', '--max-attempts':'maxAttemptsPerStory' };
     if (flag === '--verbose') cfg.verbose = true;
     else if (flag === '--legacy-unverified') cfg.legacyUnverified = true;
+    else if (flag === '--unsafe-inplace') cfg.unsafeInplace = true;
     else if (flag === '--dry-run') cfg.dryRun = true;
     else if (flag === '--cost-limit') throw new Error('--cost-limit is not implemented: refusing to pretend a budget is enforced');
     else if (flag in fields) {

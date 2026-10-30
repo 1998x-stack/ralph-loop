@@ -24,5 +24,9 @@
       ],
       "timeoutSeconds": 180
     }
+  ],
+  "allowedPaths": [
+    "src/**",
+    "app/**"
   ]
 }

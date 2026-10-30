@@ -1,12 +1,12 @@
 {
   "name": "ralph-loop-reliability-core",
   "private": true,
-  "version": "1.2.0",
+  "version": "1.3.0",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
     "test": "node --test test/*.test.js",
-    "check": "node --check ralph-node.js && node --check src/core/prd-state.js && node --check src/core/runner.js && node --check src/core/state-machine.js && node --check src/core/state-store.js && node --check src/core/test-runner.js && node --check src/core/evaluator.js && node --check src/core/verified-runner.js"
+    "check": "node --check ralph-node.js && node --check src/core/prd-state.js && node --check src/core/runner.js && node --check src/core/state-machine.js && node --check src/core/state-store.js && node --check src/core/test-runner.js && node --check src/core/evaluator.js && node --check src/core/verified-runner.js && node --check src/core/worktree.js && node --check src/core/isolated-runner.js"
   }
 }

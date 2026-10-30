@@ -1,5 +1,26 @@
 # ⟳ Ralph Loop
 
+## V1.3 Worktree and candidate patch verification
+
+V1.3 runs with two temporary Git Worktrees: **candidate** for the Coding Agent and a newly constructed **review** Worktree for trusted tests. Changes must match the manifest's `allowedPaths` and are replayed as a bounded patch against a pinned Git commit. On success the review commit is promoted **only to a private run ref** (`ralph/run-<uuid>`); `main` and the source working directory remain unchanged. On failure, no candidate patch is promoted.
+
+```bash
+# Ensure the target project is a CLEAN Git repo and commit trusted PRD, prompt and test manifest first.
+# ralph.verify.json must include e.g. "allowedPaths": ["src/**"].
+node /path/to/ralph-loop/ralph-node.js --verify ralph.verify.json --dry-run
+node /path/to/ralph-loop/ralph-node.js --verify ralph.verify.json --max-iterations 20
+node /path/to/ralph-loop/ralph-node.js status
+# Review final run branch and decide whether to merge manually:
+git branch --list 'ralph/run-*'
+```
+
+**Important security limitation:** Git Worktrees and separate test processes are **not** OS-level security sandboxes. A malicious same-user agent could access repository metadata or evidence, and a test command can execute with its user's privileges. Use this only with trusted agent runtimes and trusted code until a container/OS sandbox and external evidence storage are implemented. CLI `--unsafe-inplace` explicitly restores the V1.2 process-only mode; `--legacy-unverified` is not independently verified.
+
+[Read V1.3 migration and threat model](docs/v1.3-migration.md) · [ADR-0006](docs/adr/0006-worktree-isolation.md)
+
+---
+
+
 ## V1.2 Verified Execution (development branch)
 
 **This is the current code path:** `ralph-node.js --verify ralph.verify.json`. A trusted manifest defines executable checks for each Story. The coding agent may edit implementation files but cannot self-certify completion; an independent test subprocess and deterministic evaluator decide acceptance. Evidence is stored under `.ralph/`.
