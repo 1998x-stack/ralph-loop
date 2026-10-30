@@ -1,5 +1,26 @@
 # ⟳ Ralph Loop
 
+> **V1.1 reliability-core status (development branch):** The executable Bash and Node drivers now share the same Node.js core. PRD validation, dependency readiness, bounded iterations, timeout handling, and no-progress stopping are implemented and tested. The Claude Plugin's `Stop` hook is **informational only**; it is not a second autonomous scheduler. Independent acceptance, durable attempts, rollback, cost tracking, and sandboxed isolation are **not yet implemented**.
+>
+> **Safety:** The runner no longer opts out of Claude CLI permission checks by default. Run automation only in a properly configured, restricted workspace. A successful `passes:true` flag is currently a legacy completion claim, **not** independent verification.
+
+### V1.1 standalone quick start (run from the target project)
+
+```bash
+# Node.js 20+, git, and an installed agent CLI required
+node /path/to/ralph-loop/src/core/prd-cli.js validate prd.json
+node /path/to/ralph-loop/src/core/prd-cli.js summary prd.json
+bash /path/to/ralph-loop/bin/ralph --dry-run
+bash /path/to/ralph-loop/bin/ralph --max-iterations 20 --timeout-seconds 600
+```
+
+The default target-project prompt path is `./CLAUDE.md` (override with `--prompt`). For a nonzero exit, blocked PRD, a timeout, or three iterations without passing another story, the loop stops with a failure instead of silently continuing. `--cost-limit` explicitly fails until verifiable usage accounting is implemented.
+
+See [V1.1 migration details](docs/v1.1-migration.md) and [ADR 0004](docs/adr/0004-one-orchestrator.md).
+
+---
+
+
 > **Deterministic-autonomous AI agent system.** A loop spawns fresh agents with zero context memory until every task is verifiably complete. The only "memory" is the file system.
 
 > 中文一句话：确定性自治 Agent 系统——每轮生成一个零上下文的全新 agent，直到每个任务被可验证地完成；唯一的内存是文件系统。核心是让任何 agent 都从不过载上下文，避免进入「Dumb Zone」。
@@ -79,10 +100,10 @@ flowchart TD
 
 - **Fresh context per iteration** — No context rot. Subagent isolation guarantees every story starts clean.
 - **File-based state machine** — `prd.json` is the single source of truth. `progress.txt` is the cross-session handoff diary. Git is the code snapshot.
-- **Browser-verified acceptance** — Frontend stories must pass browser automation (Puppeteer/Playwright). External, reproducible verification.
-- **Smart error recovery** — Configurable retry count (default: 3 attempts). Exhausted retries → auto-revert → mark BLOCKED → move on. Failed stories never block progress.
+- **Browser verification policy (not independently enforced yet)** — Prompt templates request Puppeteer/Playwright checks. An external test runner is planned.
+- **Bounded execution** — Node driver now stops on repeated no-progress, timeout, and agent errors. Automatic rollback and durable per-story retry state are planned.
 - **Claude Code plugin** — Install once, reuse across projects. Skills, agents, hooks — auto-discovered. Namespaced commands (`/ralph-loop:run`).
-- **Dual runtime** — Bash (`ralph.sh`) for simplicity, Node.js (`ralph-node.js`) for programmatic control, hooks for autonomous mode.
+- **One authoritative engine** — Bash is a compatibility shim over the Node runner; plugin hooks report state rather than driving an independent loop.
 - **GitHub Pages** — Live landing page at the repo's Pages URL with architecture overview, flow diagrams, and quick start.
 
 ## Quick Start

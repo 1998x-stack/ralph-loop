@@ -1,26 +1,6 @@
 {
   "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/check-prd.sh"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Stop",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/on-stop.sh"
-          }
-        ]
-      }
-    ]
+    "SessionStart": [{"matcher":"","hooks":[{"type":"command","command":"${CLAUDE_PLUGIN_ROOT}/hooks/check-prd.sh"}]}],
+    "Stop": [{"hooks":[{"type":"command","command":"${CLAUDE_PLUGIN_ROOT}/hooks/on-stop.sh"}]}]
   }
 }

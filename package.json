@@ -1,0 +1,12 @@
+{
+  "name": "ralph-loop-reliability-core",
+  "private": true,
+  "version": "1.1.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "check": "node --check ralph-node.js && node --check src/core/prd-state.js && node --check src/core/runner.js"
+  }
+}
