@@ -2,3 +2,8 @@
 *.swp
 *.swo
 *~
+node_modules/
+ralph-run.log
+.ralph/
+.env
+.env.local

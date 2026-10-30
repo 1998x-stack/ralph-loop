@@ -1,0 +1,26 @@
+name: Ralph Core Tests
+on:
+  push:
+    branches: [main, 'feat/**']
+  pull_request:
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Node syntax checks
+        run: |
+          node --check ralph-node.js
+          node --check src/core/prd-state.js
+          node --check src/core/runner.js
+      - name: Unit and fake-agent integration tests
+        run: node --test test/*.test.js
+      - name: Shell syntax checks
+        run: |
+          bash -n bin/ralph
+          bash -n ralph.sh
+          bash -n hooks/check-prd.sh
+          bash -n hooks/on-stop.sh
