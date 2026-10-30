@@ -15,6 +15,8 @@ The harness appends an authoritative `# Assigned story` section containing its J
 - Modify implementation files necessary for the assigned story only.
 - Preserve compatibility and existing behavior.
 - You may run diagnostic tests, but only the **independent harness test runner** decides acceptance.
+- The Agent runs inside a temporary Git Worktree. Only edit paths allowed by `ralph.verify.json` (`allowedPaths`). A separate review Worktree will be built from your patch and tested against the pinned base commit.
+- Do not modify Git metadata, create symlinks or executable files, or attempt to access the original repository root.
 - Do not manipulate test output, golden tests, the verification manifest, or the harness's run state.
 - Do NOT modify `prd.json` (including `passes` and `status`), `.ralph/`, `ralph.verify.json`, protected test files or CI configuration.
 - Do not alter, remove, or bypass existing checks or tests to get a pass.

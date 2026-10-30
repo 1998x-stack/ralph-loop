@@ -21,6 +21,8 @@ jobs:
           node --check src/core/test-runner.js
           node --check src/core/evaluator.js
           node --check src/core/verified-runner.js
+          node --check src/core/worktree.js
+          node --check src/core/isolated-runner.js
       - name: Unit and fake-agent integration tests
         run: node --test test/*.test.js
       - name: Shell syntax checks
