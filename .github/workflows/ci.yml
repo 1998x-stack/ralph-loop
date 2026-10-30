@@ -16,6 +16,11 @@ jobs:
           node --check ralph-node.js
           node --check src/core/prd-state.js
           node --check src/core/runner.js
+          node --check src/core/state-machine.js
+          node --check src/core/state-store.js
+          node --check src/core/test-runner.js
+          node --check src/core/evaluator.js
+          node --check src/core/verified-runner.js
       - name: Unit and fake-agent integration tests
         run: node --test test/*.test.js
       - name: Shell syntax checks

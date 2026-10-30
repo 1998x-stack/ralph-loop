@@ -21,18 +21,19 @@ function parseArgs(args) {
   const cfg = {};
   for (let i = 0; i < args.length; i++) {
     const flag = args[i];
-    const fields = { '--max-iterations':'maxIterations','--max-no-progress':'maxNoProgress', '--tool':'tool', '--prompt':'promptFile', '--prd':'prdFile', '--timeout-seconds':'timeoutSeconds', '--delay-seconds':'iterationDelaySec', '--log':'logFile' };
+    const fields = { '--max-iterations':'maxIterations','--max-no-progress':'maxNoProgress', '--tool':'tool', '--prompt':'promptFile', '--prd':'prdFile', '--timeout-seconds':'timeoutSeconds', '--delay-seconds':'iterationDelaySec', '--log':'logFile', '--verify':'verificationFile', '--max-attempts':'maxAttemptsPerStory' };
     if (flag === '--verbose') cfg.verbose = true;
+    else if (flag === '--legacy-unverified') cfg.legacyUnverified = true;
     else if (flag === '--dry-run') cfg.dryRun = true;
     else if (flag === '--cost-limit') throw new Error('--cost-limit is not implemented: refusing to pretend a budget is enforced');
     else if (flag in fields) {
       if (!args[i+1] || args[i+1].startsWith('--')) throw new Error(`Missing value for ${flag}`);
       const v = args[++i];
-      cfg[fields[flag]] = ['maxIterations','maxNoProgress','timeoutSeconds','iterationDelaySec'].includes(fields[flag]) ? Number(v) : v;
+      cfg[fields[flag]] = ['maxIterations','maxNoProgress','timeoutSeconds','iterationDelaySec','maxAttemptsPerStory'].includes(fields[flag]) ? Number(v) : v;
     } else throw new Error(`Unknown option: ${flag}`);
   }
   const c = { ...DEFAULTS, ...cfg };
-  for (const field of ['maxIterations','maxNoProgress','timeoutSeconds']) if (!Number.isSafeInteger(c[field]) || c[field] < 1) throw new Error(`${field} must be a positive integer`);
+  for (const field of ['maxIterations','maxNoProgress','timeoutSeconds', ...(c.maxAttemptsPerStory===undefined?[]:['maxAttemptsPerStory'])]) if (!Number.isSafeInteger(c[field]) || c[field] < 1) throw new Error(`${field} must be a positive integer`);
   if (!Number.isSafeInteger(c.iterationDelaySec) || c.iterationDelaySec < 0) throw new Error('iterationDelaySec must be a nonnegative integer');
   if (!['claude','amp'].includes(c.tool)) throw new Error('tool must be claude or amp');
   return c;
